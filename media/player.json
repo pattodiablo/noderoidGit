@@ -1,0 +1,29 @@
+{
+"images": ["player.png"],
+"frames": [
+
+    [210, 0, 30, 30], 
+    [180, 0, 30, 30], 
+    [150, 0, 30, 30], 
+    [120, 0, 30, 30], 
+    [90, 0, 30, 30], 
+    [60, 0, 30, 30], 
+    [30, 0, 30, 30], 
+    [0, 0, 30, 30]
+],
+"animations": {
+    
+        "idle-player1":[0], 
+        "idle-player2":[1], 
+        "run-player1":[2], 
+        "run-player2":[3], 
+        "run-player3":[4], 
+        "run-player4":[5], 
+        "run-player5":[6], 
+        "run-player6":[7]
+},
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:d401708641439ceeb13dac80045bfa0d:93ec0f6f9f21899bb4ceeb4b39ee8df5:86d5339b780aedd87b35e2b7c0a7e11b$",
+        "Created with TexturePacker (http://www.texturepacker.com) for EaselJS"
+]
+}
