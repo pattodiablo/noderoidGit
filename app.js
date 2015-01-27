@@ -44,6 +44,18 @@ io.on('connection', function(socket){
   	 populate();
   });
 
+
+      socket.on('playerMove', function(x,y,nombre,animacion){
+          socket.broadcast.emit("entityMoved",x,y,nombre,animacion);
+         
+      });
+    
+  socket.on('player new', function(netName){
+     console.log('hola : ' + netName);
+     
+  });
+
+
 });
 
 http.listen(3000, function(){
