@@ -17,42 +17,56 @@ io.on('connection', function(socket){
     console.log("           x4 socket server enabled           ");
     console.log("----------------------------------------------");
     console.log("--------------------rocks---------------------");
-    allNetNames=[];
-    allClients=[];
+    console.log("                                              ");
     conexionCounter=false;
   }
   allClients.push(socket);
-  console.log("----------------------------------------------");
+  console.log("-----------------coneccion----------------------");
+  console.log("                                              ");
   console.log('usuario conectado ' + socket.id);
   console.log("numero de usuarios conectados: " + allClients.length);
   
-  socket.on('disconnect', function(){
-    console.log('usuario desconectado: '+ socket.id);
-      var i = allClients.indexOf(socket);
-      allClients.splice(i, 1); 
-      console.log("numero de usuarios conectados:  " + allClients.length);
+  
 
-      var j = allNetNames.indexOf(socket.id);
-      allNetNames.splice(j, 1); 
+    socket.on('disconnect', function(){
+    console.log("---------------desconeccion-------------------");
+    console.log("                                              ");
+    var i = allClients.indexOf(socket);
+    allClients.splice(i, 1); 
+    console.log('usuario desconectado: '+ socket.id);
+    console.log("numero de usuarios conectados:  " + allClients.length);
+    console.log("numero de NetNames:  " + allNetNames.length);
+    io.emit("deletePlayer",socket.id);
+    
       
   });
 
   socket.on('send Entities', function(netName){
-     console.log('nuevo netName : ' + netName);
-     allNetNames.push(netName);
-      console.log("nuermo de NetNames: " + allNetNames.length);
-  	 populate();
+
+        for(var i in allClients){ //verifica si esta conectado 
+          if(allClients[i].id==netName){
+             console.log('nuevo netName : ' + netName);
+             allNetNames.push(netName);
+             console.log("numero de NetNames: " + allNetNames.length);
+             populateNewPlayer(netName);
+          }
+
+        };
+    
   });
 
 
-      socket.on('playerMove', function(x,y,nombre,animacion){
-          socket.broadcast.emit("entityMoved",x,y,nombre,animacion);
+      socket.on('playerMove', function(x,y,nombre,animacion,flip){
+          socket.broadcast.emit("entityMoved",x,y,nombre,animacion,flip);
          
       });
     
-  socket.on('player new', function(netName){
-     console.log('hola : ' + netName);
-     
+  
+
+   socket.on('ask forPlayers', function(netName){
+     console.log("----------------------------------------------");
+     console.log('asking for players ');
+     populate(netName);
   });
 
 
@@ -62,7 +76,17 @@ http.listen(3000, function(){
   console.log('listening on *:3000');
 });
 
-function populate(){
-	io.emit("populating",allNetNames);
+function populate(netName){
+  for(var i in allClients){
+    if(allClients[i]!=netName){
+       populateNewPlayer(allClients[i].id);
+    }
+   
+  }
+	 io.emit("populating",allNetNames);
+  
+}
 
+function populateNewPlayer(singlePlayer){
+    io.emit("addSinglePlayer",singlePlayer);  
 }
