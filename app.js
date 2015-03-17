@@ -19,9 +19,13 @@ io.on('connection', function(socket){
     console.log("--------------------rocks---------------------");
     console.log("                                              ");
     conexionCounter=false;
+    
+    while(allClients.length > 0) {
+    allClients.pop();
+}
   }
   allClients.push(socket);
-  console.log("-----------------coneccion----------------------");
+  console.log("-----------------conexion----------------------");
   console.log("                                              ");
   console.log('usuario conectado ' + socket.id);
   console.log("numero de usuarios conectados: " + allClients.length);
@@ -61,7 +65,25 @@ io.on('connection', function(socket){
          
       });
     
-  
+  socket.on('moveLeft', function(nombre){
+          console.log("presionando Left");
+         socket.broadcast.emit("entityPressed",1,nombre);
+      });
+
+  socket.on('moveRight', function(nombre){
+          console.log("presionando Right");
+         socket.broadcast.emit("entityPressed",2,nombre);
+      });
+
+socket.on('notMoved', function(nombre){
+          console.log("not moving");
+         socket.broadcast.emit("entityPressed",0,nombre);
+      });
+
+socket.on('jumping', function(nombre){
+          console.log("jumpingArround");
+         socket.broadcast.emit("entityPressed",3,nombre);
+      });
 
    socket.on('ask forPlayers', function(netName){
      console.log("----------------------------------------------");
