@@ -60,29 +60,29 @@ io.on('connection', function(socket){
   });
 
 
-      socket.on('playerMove', function(x,y,nombre,animacion,flip){
-          socket.broadcast.emit("entityMoved",x,y,nombre,animacion,flip);
+      socket.on('playerMove', function(x,y,nombre){
+          socket.broadcast.emit("entityMoved",x,y,nombre);
          
       });
     
-  socket.on('moveLeft', function(nombre){
+  socket.on('moveLeft', function(nombre,animacion){
           console.log("presionando Left");
-         socket.broadcast.emit("entityPressed",1,nombre);
+         socket.broadcast.emit("entityPressed",1,nombre,animacion);
       });
 
-  socket.on('moveRight', function(nombre){
+  socket.on('moveRight', function(nombre,animacion){
           console.log("presionando Right");
-         socket.broadcast.emit("entityPressed",2,nombre);
+         socket.broadcast.emit("entityPressed",2,nombre,animacion);
       });
 
-socket.on('notMoved', function(nombre){
+socket.on('notMoved', function(nombre,animacion){
           console.log("not moving");
-         socket.broadcast.emit("entityPressed",0,nombre);
+         socket.broadcast.emit("entityPressed",0,nombre,animacion);
       });
 
-socket.on('jumping', function(nombre){
+socket.on('jumping', function(nombre,animacion){
           console.log("jumpingArround");
-         socket.broadcast.emit("entityPressed",3,nombre);
+         socket.broadcast.emit("entityPressed",3,nombre,animacion);
       });
 
    socket.on('ask forPlayers', function(netName){
