@@ -60,28 +60,29 @@ io.on('connection', function(socket){
   });
 
 
-      socket.on('playerMove', function(x,y,nombre){
-          socket.broadcast.emit("entityMoved",x,y,nombre);
+      socket.on('playerMove', function(x,y,nombre,flip){
+
+          socket.broadcast.emit("entityMoved",x,y,nombre,flip);
          
       });
     
   socket.on('moveLeft', function(nombre,animacion){
-          console.log("presionando Left");
+    
          socket.broadcast.emit("entityPressed",1,nombre,animacion);
       });
 
   socket.on('moveRight', function(nombre,animacion){
-          console.log("presionando Right");
+         
          socket.broadcast.emit("entityPressed",2,nombre,animacion);
       });
 
 socket.on('notMoved', function(nombre,animacion){
-          console.log("not moving");
+       
          socket.broadcast.emit("entityPressed",0,nombre,animacion);
       });
 
 socket.on('jumping', function(nombre,animacion){
-          console.log("jumpingArround");
+         
          socket.broadcast.emit("entityPressed",3,nombre,animacion);
       });
 
