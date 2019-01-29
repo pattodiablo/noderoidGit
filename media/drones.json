@@ -1,0 +1,19 @@
+{
+"images": ["drones.png"],
+"frames": [
+
+    [0, 0, 62, 31], 
+    [62, 0, 62, 31], 
+    [124, 0, 62, 31]
+],
+"animations": {
+    
+        "drone fly0001":[0], 
+        "drone fly0002":[1], 
+        "drone fly0003":[2]
+},
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:b9f8b45174a85563191185f3c3e9ab2a:7197af9be6df7339b7b469c17e6a4a0c:7b971c80c0b54695ff7a0c697e089304$",
+        "Created with TexturePacker (http://www.texturepacker.com) for EaselJS"
+]
+}

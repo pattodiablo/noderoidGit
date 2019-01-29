@@ -1,0 +1,19 @@
+{
+"images": ["lava.png"],
+"frames": [
+
+    [65, 1, 30, 30], 
+    [33, 1, 30, 30], 
+    [1, 1, 30, 30]
+],
+"animations": {
+    
+        "lava1":[0], 
+        "lava2":[1], 
+        "lava3":[2]
+},
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:e7116ec99c42769f1edc9a55740d6ef0:6deeb2bdb9031e1636e8bb536a8cd85d:48a6d8abf958ae2efef63b77251e6633$",
+        "Created with TexturePacker (http://www.texturepacker.com) for EaselJS"
+]
+}
